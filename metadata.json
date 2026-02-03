@@ -1,0 +1,5 @@
+{
+  "name": "Dev Tools Hub",
+  "description": "A collection of essential developer tools including JSON Formatter, Base64 Converter, UUID Generator, and more. Client-side, fast, and secure.",
+  "requestFramePermissions": []
+}
