@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
+import React, { useState, useEffect } from 'react';
+import { marked } from 'marked';
 import { ToolWrapper } from '../ToolWrapper';
 import { Button } from '../ui/Button';
 import { Trash2 } from 'lucide-react';
@@ -19,6 +19,17 @@ console.log('Code blocks supported');
 
 > "Simplicity is the soul of efficiency."
   `);
+
+  const [html, setHtml] = useState('');
+
+  useEffect(() => {
+    try {
+      const parsed = marked.parse(markdown) as string;
+      setHtml(parsed);
+    } catch (e) {
+      console.error('Markdown parse error', e);
+    }
+  }, [markdown]);
 
   return (
     <ToolWrapper 
@@ -43,9 +54,10 @@ console.log('Code blocks supported');
         
         <div className="flex flex-col h-full min-h-[300px]">
            <div className="bg-zinc-100 dark:bg-zinc-800/50 px-3 py-2 border-t border-x border-zinc-300 dark:border-zinc-700 rounded-t-md text-xs text-zinc-500 dark:text-zinc-400 font-semibold uppercase">Preview</div>
-           <div className="flex-1 w-full bg-white dark:bg-black/20 border-b border-x border-zinc-300 dark:border-zinc-700 rounded-b-md p-6 overflow-auto prose dark:prose-invert prose-sm max-w-none text-zinc-900 dark:text-zinc-100">
-              <ReactMarkdown>{markdown}</ReactMarkdown>
-           </div>
+           <div 
+             className="flex-1 w-full bg-white dark:bg-black/20 border-b border-x border-zinc-300 dark:border-zinc-700 rounded-b-md p-6 overflow-auto prose dark:prose-invert prose-sm max-w-none text-zinc-900 dark:text-zinc-100"
+             dangerouslySetInnerHTML={{ __html: html }}
+           />
         </div>
       </div>
     </ToolWrapper>

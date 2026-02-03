@@ -10,6 +10,11 @@ export enum ToolId {
   REGEX = 'regex',
   MARKDOWN = 'markdown',
   URL_ENCODE = 'url-encode',
+  JWT = 'jwt',
+  HASH = 'hash',
+  LOREM = 'lorem',
+  PASSWORD = 'password',
+  CSS_UNIT = 'css-unit',
 }
 
 export interface ToolDef {

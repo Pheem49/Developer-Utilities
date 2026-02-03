@@ -46,8 +46,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
           flex flex-col shadow-xl lg:shadow-none
         `}
       >
-        <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
-          <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+        <div 
+          className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3 cursor-pointer group hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
+          onClick={() => { onSelectTool(ToolId.HOME); onClose(); }}
+          title="Go to Dashboard"
+        >
+          <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
             <Terminal className="w-5 h-5" />
           </div>
           <span className="font-bold text-lg tracking-tight text-zinc-900 dark:text-white">DevTools<span className="text-primary">Hub</span></span>
@@ -123,7 +127,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
            </button>
 
            <a 
-             href="#" 
+             href="https://github.com/Pheem49/Developer-Utilities" 
+             target="_blank"
+             rel="noopener noreferrer"
              className="flex items-center justify-center gap-2 text-xs text-zinc-500 hover:text-primary transition-colors py-2"
            >
              <Github className="w-3 h-3" />

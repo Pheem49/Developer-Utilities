@@ -127,7 +127,12 @@ function App() {
           >
             <Menu className="w-6 h-6" />
           </button>
-          <span className="font-bold text-zinc-900 dark:text-white">DevToolsHub</span>
+          <button 
+             onClick={() => handleSelectTool(ToolId.HOME)}
+             className="font-bold text-zinc-900 dark:text-white hover:text-primary transition-colors"
+          >
+             DevToolsHub
+          </button>
           <div className="w-6" /> {/* Spacer */}
         </div>
 

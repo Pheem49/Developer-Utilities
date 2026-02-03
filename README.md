@@ -1,20 +1,94 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Dev Tools Hub 🛠️
 
-# Run and deploy your AI Studio app
+A collection of essential developer tools gathered in one place. **Fast, free, and runs entirely on the client-side** (no data is sent to any server), ensuring your data remains private and secure.
 
-This contains everything you need to run your app locally.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss&logoColor=white)
 
-View your app in AI Studio: https://ai.studio/apps/drive/1fDTwMYhCZHUPFAq2ua9MiQUOsE61tm9M
+## ✨ Features
 
-## Run Locally
+- **🔒 100% Client-Side:** No backend processing. Your JSON, JWTs, and passwords never leave your browser.
+- **⚡ Fast & Responsive:** Built with React and Vite for instant load times.
+- **🌙 Dark Mode:** Easy on the eyes for late-night coding sessions.
+- **⭐ Favorites System:** Pin your most-used tools to the sidebar.
+- **📱 Mobile Friendly:** Fully responsive design.
 
-**Prerequisites:**  Node.js
+## 🧰 Available Tools
 
+### Text & Data
+- **JSON Formatter:** Prettify, minify, and validate JSON data.
+- **Base64 Converter:** Encode and decode strings/files to Base64.
+- **URL Encoder:** Encode/Decode URL parameters safely.
+- **Lorem Ipsum:** Generate placeholder text with custom paragraph settings.
+- **Markdown Preview:** Real-time Markdown editor and previewer.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Security & Crypto
+- **Password Generator:** Generate strong, random passwords with entropy strength estimation.
+- **Hash Generator:** Calculate MD5, SHA-1, SHA-256, and SHA-512 hashes.
+- **JWT Decoder:** Decode JSON Web Tokens to inspect headers and claims without verifying the signature.
+- **UUID Generator:** Generate random Version 4 UUIDs in bulk.
+
+### Development & Utils
+- **Regex Tester:** Test regular expressions against text with real-time highlighting.
+- **Timestamp Converter:** Convert between Unix timestamps and human-readable dates.
+- **CSS Unit Converter:** Convert between Pixels (px) and REMs based on root font size.
+
+## 🚀 Getting Started
+
+To run this project locally on your machine:
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Pheem49/Developer-Utilities.git
+   cd Developer-Utilities
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🛠️ Tech Stack
+
+- **Framework:** [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Utils:** `marked` (Markdown), `blueimp-md5` (Hashing)
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have an idea for a new tool or want to improve an existing one:
+
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingNewTool`).
+3. Commit your changes (`git commit -m 'Add some AmazingNewTool'`).
+4. Push to the branch (`git push origin feature/AmazingNewTool`).
+5. Open a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Made with ❤️ for developers by developers.
