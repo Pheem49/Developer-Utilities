@@ -15,6 +15,15 @@ export enum ToolId {
   LOREM = 'lorem',
   PASSWORD = 'password',
   CSS_UNIT = 'css-unit',
+  GRADIENT = 'gradient',
+  BOX_SHADOW = 'box-shadow',
+  COLOR_CONVERTER = 'color-converter',
+  SVG_OPTIMIZER = 'svg-optimizer',
+  QR_CODE = 'qr-code',
+  CHMOD = 'chmod',
+  CRON = 'cron',
+  SQL = 'sql',
+  DOCKER = 'docker',
 }
 
 export type ToolCategory = 'All' | 'Frontend Development' | 'UI & Graphics' | 'Data & Code Formatting' | 'Security & Encoding' | 'API & DevOps';

@@ -11,7 +11,14 @@ import {
   Hash,
   Type,
   KeyRound,
-  Scaling
+  Scaling,
+  Layers,
+  Palette,
+  FileCode,
+  QrCode,
+  Lock,
+  Database,
+  Server
 } from 'lucide-react';
 import { ToolDef, ToolId } from './types';
 import { JsonFormatter } from './components/tools/JsonFormatter';
@@ -26,8 +33,90 @@ import { HashGenerator } from './components/tools/HashGenerator';
 import { LoremIpsum } from './components/tools/LoremIpsum';
 import { PasswordGenerator } from './components/tools/PasswordGenerator';
 import { CssUnitConverter } from './components/tools/CssUnitConverter';
+import { GradientGenerator } from './components/tools/graphics/GradientGenerator';
+import { BoxShadowGenerator } from './components/tools/graphics/BoxShadowGenerator';
+import { ColorConverter } from './components/tools/graphics/ColorConverter';
+import { SvgOptimizer } from './components/tools/graphics/SvgOptimizer';
+import { QrCodeGenerator } from './components/tools/graphics/QrCodeGenerator';
+
+import { ChmodCalculator } from './components/tools/devops/ChmodCalculator';
+import { CronGenerator } from './components/tools/devops/CronGenerator';
+import { SqlFormatter } from './components/tools/devops/SqlFormatter';
+import { DockerfileGenerator } from './components/tools/devops/DockerfileGenerator';
 
 export const TOOLS: ToolDef[] = [
+  {
+    id: ToolId.CHMOD,
+    name: 'Chmod Calculator',
+    description: 'Calculate numeric and symbolic linux file permissions.',
+    icon: Lock,
+    component: <ChmodCalculator />,
+    category: 'API & DevOps'
+  },
+  {
+    id: ToolId.CRON,
+    name: 'Cron Generator',
+    description: 'Parse and validate cron schedule expressions.',
+    icon: Clock,
+    component: <CronGenerator />,
+    category: 'API & DevOps'
+  },
+  {
+    id: ToolId.SQL,
+    name: 'SQL Formatter',
+    description: 'Format and prettify SQL queries for various dialects.',
+    icon: Database,
+    component: <SqlFormatter />,
+    category: 'API & DevOps'
+  },
+  {
+    id: ToolId.DOCKER,
+    name: 'Dockerfile Generator',
+    description: 'Generate basic Dockerfiles for common languages.',
+    icon: Server,
+    component: <DockerfileGenerator />,
+    category: 'API & DevOps'
+  },
+  {
+    id: ToolId.GRADIENT,
+    name: 'Gradient Generator',
+    description: 'Create linear and radial gradients with a visual editor.',
+    icon: Palette,
+    component: <GradientGenerator />,
+    category: 'UI & Graphics'
+  },
+  {
+    id: ToolId.BOX_SHADOW,
+    name: 'Box Shadow Generator',
+    description: 'Design complex CSS box shadows visually.',
+    icon: Layers,
+    component: <BoxShadowGenerator />,
+    category: 'UI & Graphics'
+  },
+  {
+    id: ToolId.COLOR_CONVERTER,
+    name: 'Color Converter',
+    description: 'Convert between HEX, RGB, HSL, and CMYK formats.',
+    icon: Palette,
+    component: <ColorConverter />,
+    category: 'UI & Graphics'
+  },
+  {
+    id: ToolId.SVG_OPTIMIZER,
+    name: 'SVG Optimizer',
+    description: 'Minify and clean up SVG code for the web.',
+    icon: FileCode,
+    component: <SvgOptimizer />,
+    category: 'UI & Graphics'
+  },
+  {
+    id: ToolId.QR_CODE,
+    name: 'QR Code Generator',
+    description: 'Generate customizable QR codes for URLs and text.',
+    icon: QrCode,
+    component: <QrCodeGenerator />,
+    category: 'UI & Graphics'
+  },
   {
     id: ToolId.JSON,
     name: 'JSON Formatter',

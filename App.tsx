@@ -190,7 +190,7 @@ function App() {
                   />
                 </div>
               </header>
-              <div className="flex flex-wrap gap-2 justify-center mb-8">
+              <div className="flex flex-wrap gap-2 justify-center mb-12">
                 {categories.map(category => {
                   const Icon = categoryIcons[category];
                   return (
@@ -198,8 +198,8 @@ function App() {
                       key={category}
                       onClick={() => setActiveCategory(category)}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-2 ${activeCategory === category
-                          ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25'
-                          : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-primary/50 hover:text-primary'
+                        ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25'
+                        : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-primary/50 hover:text-primary'
                         }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -208,6 +208,34 @@ function App() {
                   );
                 })}
               </div>
+
+              {activeCategory === 'All' && !searchQuery && (
+                <div className="mb-12">
+                  <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
+                    <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                    Popular Tools
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                    {TOOLS.filter(t => [ToolId.JSON, ToolId.COLOR_CONVERTER, ToolId.UUID, ToolId.CHMOD, ToolId.DOCKER].includes(t.id)).map((tool) => (
+                      <button
+                        key={tool.id}
+                        onClick={() => handleSelectTool(tool.id)}
+                        className="group relative flex flex-col items-start p-4 bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl hover:border-primary/50 hover:bg-surfaceHighlight transition-all duration-200 text-left hover:shadow-lg hover:shadow-primary/5"
+                      >
+                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 group-hover:border-primary/30 group-hover:text-primary text-zinc-500 dark:text-zinc-400 transition-colors mb-3">
+                          <tool.icon className="w-5 h-5" />
+                        </div>
+                        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors text-sm">
+                          {tool.name}
+                        </h3>
+                        <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                          {tool.description}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTools.map((tool) => (
