@@ -1,5 +1,7 @@
 # Dev Tools Hub 🛠️
 
+![DevTools Hub Banner](public/banner.png)
+
 A collection of essential developer tools gathered in one place. **Fast, free, and runs entirely on the client-side** (no data is sent to any server), ensuring your data remains private and secure.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -12,7 +14,8 @@ A collection of essential developer tools gathered in one place. **Fast, free, a
 - **🔒 100% Client-Side:** No backend processing. Your JSON, JWTs, and passwords never leave your browser.
 - **⚡ Fast & Responsive:** Built with React and Vite for instant load times.
 - **🌙 Dark Mode:** Easy on the eyes for late-night coding sessions.
-- **⭐ Favorites System:** Pin your most-used tools to the sidebar.
+- **⭐ Favorites & Popular Tools:** Pin your favorites or quickly access popular utilities.
+- **📝 Live Markdown Editor:** Full-featured GitHub-flavored markdown editor with split view.
 - **📱 Mobile Friendly:** Fully responsive design.
 
 ## 🧰 Available Tools
@@ -22,7 +25,20 @@ A collection of essential developer tools gathered in one place. **Fast, free, a
 - **Base64 Converter:** Encode and decode strings/files to Base64.
 - **URL Encoder:** Encode/Decode URL parameters safely.
 - **Lorem Ipsum:** Generate placeholder text with custom paragraph settings.
-- **Markdown Preview:** Real-time Markdown editor and previewer.
+- **Markdown Preview:** Real-time Markdown editor with formatting toolbar and split view.
+
+### UI & Graphics
+- **Gradient Generator:** Create beautiful linear and radial gradients visually.
+- **Box Shadow Generator:** Design CSS box shadows with ease.
+- **Color Converter:** Convert between HEX, RGB, HSL, and CMYK with a color picker.
+- **SVG Optimizer:** Minify and clean up SVG code.
+- **QR Code Generator:** Generate QR codes for any text or URL.
+
+### API & DevOps
+- **Chmod Calculator:** Calculate numeric (755) and symbolic (rwxr-xr-x) permissions.
+- **Cron Generator:** Generate and explain cron schedule expressions.
+- **SQL Formatter:** Prettify SQL queries for Standard SQL, MySQL, PostgreSQL, etc.
+- **Dockerfile Generator:** Create starter Dockerfiles for Node, Python, and Go.
 
 ### Security & Crypto
 - **Password Generator:** Generate strong, random passwords with entropy strength estimation.
