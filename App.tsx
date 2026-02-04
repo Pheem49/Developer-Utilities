@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, Zap, ShieldCheck, Star } from 'lucide-react';
+import { Menu, Search, Zap, ShieldCheck, Star, LayoutGrid, Code2, Palette, Database, Lock, Server } from 'lucide-react';
 import { TOOLS } from './constants';
-import { ToolId } from './types';
+import { ToolId, ToolCategory } from './types';
 import { Sidebar } from './components/Sidebar';
 
 function App() {
   const [activeToolId, setActiveToolId] = useState<ToolId>(ToolId.HOME);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  
+  const [activeCategory, setActiveCategory] = useState<ToolCategory>('All');
+
   // Theme State
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
       try {
-        return (localStorage.getItem('theme') as 'dark'|'light') || 'dark';
+        return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
       } catch (e) {
         return 'dark';
       }
@@ -39,7 +40,7 @@ function App() {
     const handleHashChange = () => {
       try {
         // In some sandboxed environments, accessing location properties might fail
-        const hash = window.location.hash ? window.location.hash.slice(1) : ''; 
+        const hash = window.location.hash ? window.location.hash.slice(1) : '';
         const tool = TOOLS.find(t => t.id === hash);
         if (tool) {
           setActiveToolId(tool.id);
@@ -85,7 +86,7 @@ function App() {
   const toggleFavorite = (toolId: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
     setFavorites(prev => {
-      const newFavs = prev.includes(toolId) 
+      const newFavs = prev.includes(toolId)
         ? prev.filter(id => id !== toolId)
         : [...prev, toolId];
       try {
@@ -99,18 +100,37 @@ function App() {
 
   const activeTool = TOOLS.find(t => t.id === activeToolId);
 
-  const filteredTools = TOOLS.filter(t => 
-    t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    t.description.toLowerCase().includes(searchQuery.toLowerCase())
+  const categories: ToolCategory[] = [
+    'All',
+    'Frontend Development',
+    'UI & Graphics',
+    'Data & Code Formatting',
+    'Security & Encoding',
+    'API & DevOps'
+  ];
+
+  const filteredTools = TOOLS.filter(t =>
+    (activeCategory === 'All' || t.category === activeCategory) &&
+    (t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      t.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+  const categoryIcons: Record<ToolCategory, React.ElementType> = {
+    'All': LayoutGrid,
+    'Frontend Development': Code2,
+    'UI & Graphics': Palette,
+    'Data & Code Formatting': Database,
+    'Security & Encoding': Lock,
+    'API & DevOps': Server
+  };
 
   return (
     <div className="flex h-screen w-full bg-background text-zinc-900 dark:text-zinc-100 overflow-hidden font-sans transition-colors duration-300">
-      
-      <Sidebar 
-        tools={TOOLS} 
-        activeTool={activeToolId} 
-        onSelectTool={handleSelectTool} 
+
+      <Sidebar
+        tools={TOOLS}
+        activeTool={activeToolId}
+        onSelectTool={handleSelectTool}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         favorites={favorites}
@@ -121,24 +141,24 @@ function App() {
       <main className="flex-1 flex flex-col min-w-0 relative">
         {/* Mobile Header */}
         <div className="lg:hidden h-14 border-b border-zinc-200 dark:border-zinc-800 flex items-center px-4 justify-between bg-surface/50 backdrop-blur">
-          <button 
+          <button
             onClick={() => setSidebarOpen(true)}
             className="p-2 -ml-2 text-zinc-500 dark:text-zinc-400 hover:text-primary"
           >
             <Menu className="w-6 h-6" />
           </button>
-          <button 
-             onClick={() => handleSelectTool(ToolId.HOME)}
-             className="font-bold text-zinc-900 dark:text-white hover:text-primary transition-colors"
+          <button
+            onClick={() => handleSelectTool(ToolId.HOME)}
+            className="font-bold text-zinc-900 dark:text-white hover:text-primary transition-colors"
           >
-             DevToolsHub
+            DevToolsHub
           </button>
           <div className="w-6" /> {/* Spacer */}
         </div>
 
         {/* Content Area */}
         <div className="flex-1 overflow-auto p-4 lg:p-8">
-          
+
           {activeToolId === ToolId.HOME ? (
             <div className="max-w-6xl mx-auto animate-in fade-in duration-500">
               <header className="mb-12 text-center space-y-4 pt-8">
@@ -151,10 +171,10 @@ function App() {
                 <p className="text-zinc-500 dark:text-zinc-400 text-lg max-w-2xl mx-auto">
                   A collection of free, client-side tools for developers. Fast, secure, and always ready.
                 </p>
-                
+
                 <div className="flex items-center justify-center gap-2 mt-4 text-xs font-medium text-emerald-600 dark:text-emerald-500 bg-emerald-500/10 py-1 px-3 rounded-full border border-emerald-500/20 inline-flex mx-auto">
-                   <ShieldCheck className="w-3 h-3" />
-                   All tools run locally in your browser. No data leaves your device.
+                  <ShieldCheck className="w-3 h-3" />
+                  All tools run locally in your browser. No data leaves your device.
                 </div>
 
                 <div className="max-w-md mx-auto relative mt-8">
@@ -170,6 +190,24 @@ function App() {
                   />
                 </div>
               </header>
+              <div className="flex flex-wrap gap-2 justify-center mb-8">
+                {categories.map(category => {
+                  const Icon = categoryIcons[category];
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setActiveCategory(category)}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border flex items-center gap-2 ${activeCategory === category
+                          ? 'bg-primary text-white border-primary shadow-lg shadow-primary/25'
+                          : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-primary/50 hover:text-primary'
+                        }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {category}
+                    </button>
+                  );
+                })}
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTools.map((tool) => (
@@ -179,21 +217,21 @@ function App() {
                     className="group relative flex flex-col items-start p-6 bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl hover:border-primary/50 hover:bg-surfaceHighlight transition-all duration-200 text-left hover:shadow-lg hover:shadow-primary/5"
                   >
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                         onClick={(e) => toggleFavorite(tool.id, e)}
+                      onClick={(e) => toggleFavorite(tool.id, e)}
                     >
-                        <Star className={`w-5 h-5 ${favorites.includes(tool.id) ? 'text-yellow-500 fill-yellow-500' : 'text-zinc-400 hover:text-yellow-500'}`} />
+                      <Star className={`w-5 h-5 ${favorites.includes(tool.id) ? 'text-yellow-500 fill-yellow-500' : 'text-zinc-400 hover:text-yellow-500'}`} />
                     </div>
 
                     <div className="p-3 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 group-hover:border-primary/30 group-hover:text-primary text-zinc-500 dark:text-zinc-400 transition-colors mb-4">
                       <tool.icon className="w-6 h-6" />
                     </div>
                     <div className="flex items-center w-full justify-between">
-                       <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors">
                         {tool.name}
                       </h3>
                       {favorites.includes(tool.id) && <Star className="w-4 h-4 text-yellow-500 fill-yellow-500 group-hover:opacity-0" />}
                     </div>
-                    
+
                     <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                       {tool.description}
                     </p>
@@ -202,9 +240,9 @@ function App() {
               </div>
             </div>
           ) : (
-             <div className="h-full max-w-7xl mx-auto">
-               {activeTool?.component}
-             </div>
+            <div className="h-full max-w-7xl mx-auto">
+              {activeTool?.component}
+            </div>
           )}
         </div>
       </main>

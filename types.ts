@@ -17,10 +17,13 @@ export enum ToolId {
   CSS_UNIT = 'css-unit',
 }
 
+export type ToolCategory = 'All' | 'Frontend Development' | 'UI & Graphics' | 'Data & Code Formatting' | 'Security & Encoding' | 'API & DevOps';
+
 export interface ToolDef {
   id: ToolId;
   name: string;
   description: string;
   icon: LucideIcon;
   component: React.ReactNode;
+  category: ToolCategory;
 }
