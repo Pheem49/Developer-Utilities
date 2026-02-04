@@ -1,6 +1,6 @@
 # Dev Tools Hub 🛠️
 
-![DevTools Hub Banner](public/Screenshot_2026-02-04_20-12-56.png)
+![DevTools Hub Banner](public/favicon.svg)
 
 A collection of essential developer tools gathered in one place. **Fast, free, and runs entirely on the client-side** (no data is sent to any server), ensuring your data remains private and secure.
 
