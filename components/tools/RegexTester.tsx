@@ -14,29 +14,29 @@ export const RegexTester: React.FC = () => {
       const regex = new RegExp(regexStr, flags);
       const matches = [];
       let match;
-      
+
       // Prevent infinite loops with global flag if regex matches empty string
       if (regex.global) {
-          // Limit iterations to prevent browser crash on bad regex
-          let i = 0;
-          while ((match = regex.exec(testString)) !== null && i < 1000) {
-            matches.push({
-              index: match.index,
-              text: match[0],
-              groups: match.slice(1)
-            });
-            if (match.index === regex.lastIndex) regex.lastIndex++;
-            i++;
-          }
+        // Limit iterations to prevent browser crash on bad regex
+        let i = 0;
+        while ((match = regex.exec(testString)) !== null && i < 1000) {
+          matches.push({
+            index: match.index,
+            text: match[0],
+            groups: match.slice(1)
+          });
+          if (match.index === regex.lastIndex) regex.lastIndex++;
+          i++;
+        }
       } else {
-         match = regex.exec(testString);
-         if (match) {
-           matches.push({
-             index: match.index,
-             text: match[0],
-             groups: match.slice(1)
-           });
-         }
+        match = regex.exec(testString);
+        if (match) {
+          matches.push({
+            index: match.index,
+            text: match[0],
+            groups: match.slice(1)
+          });
+        }
       }
 
       return { valid: true, matches };
@@ -84,49 +84,48 @@ export const RegexTester: React.FC = () => {
   };
 
   const clearAll = () => {
-      setRegexStr('');
-      setTestString('');
+    setRegexStr('');
+    setTestString('');
   };
 
   return (
-    <ToolWrapper 
-      title="Regex Tester" 
-      description="Test regular expressions against text in real-time."
+    <ToolWrapper
+      title="Regex Tester"
+      description="Test and validate regular expressions against text strings in real-time."
       actions={
         <Button variant="ghost" size="sm" onClick={clearAll} title="Clear">
-           <Trash2 className="w-4 h-4" />
+          <Trash2 className="w-4 h-4" />
         </Button>
       }
     >
       <div className="flex flex-col gap-6 h-full">
         {/* Regex Input */}
         <div className="flex gap-2">
-           <div className="flex-1 relative">
-             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 font-mono text-lg">/</div>
-             <input 
-               type="text" 
-               value={regexStr}
-               onChange={e => setRegexStr(e.target.value)}
-               placeholder="Expression (e.g. [a-z0-9]+)"
-               className={`w-full bg-surfaceHighlight border rounded-md py-2 pl-6 pr-4 font-mono text-zinc-900 dark:text-zinc-200 focus:outline-none focus:ring-1 ${
-                 result && !result.valid ? 'border-red-500 focus:border-red-500' : 'border-zinc-300 dark:border-zinc-700 focus:border-primary'
-               }`}
-             />
-             <div className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 font-mono text-lg">/</div>
-           </div>
-           <input 
-             type="text" 
-             value={flags}
-             onChange={e => setFlags(e.target.value)}
-             placeholder="flags"
-             className="w-20 bg-surfaceHighlight border border-zinc-300 dark:border-zinc-700 rounded-md px-3 py-2 font-mono text-zinc-500 dark:text-zinc-400 focus:outline-none focus:border-primary text-center"
-           />
+          <div className="flex-1 relative">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 font-mono text-lg">/</div>
+            <input
+              type="text"
+              value={regexStr}
+              onChange={e => setRegexStr(e.target.value)}
+              placeholder="Expression (e.g. [a-z0-9]+)"
+              className={`w-full bg-surfaceHighlight border rounded-md py-2 pl-6 pr-4 font-mono text-zinc-900 dark:text-zinc-200 focus:outline-none focus:ring-1 ${result && !result.valid ? 'border-red-500 focus:border-red-500' : 'border-zinc-300 dark:border-zinc-700 focus:border-primary'
+                }`}
+            />
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 font-mono text-lg">/</div>
+          </div>
+          <input
+            type="text"
+            value={flags}
+            onChange={e => setFlags(e.target.value)}
+            placeholder="flags"
+            className="w-20 bg-surfaceHighlight border border-zinc-300 dark:border-zinc-700 rounded-md px-3 py-2 font-mono text-zinc-500 dark:text-zinc-400 focus:outline-none focus:border-primary text-center"
+          />
         </div>
-        
+
         {result && !result.valid && (
           <div className="flex items-center gap-2 text-red-500 dark:text-red-400 text-sm bg-red-100 dark:bg-red-950/20 p-2 rounded border border-red-200 dark:border-red-900/50">
-             <AlertCircle className="w-4 h-4" />
-             {result.error}
+            <AlertCircle className="w-4 h-4" />
+            {result.error}
           </div>
         )}
 
@@ -137,18 +136,18 @@ export const RegexTester: React.FC = () => {
             {result?.valid && <span>{result.matches.length} Matches</span>}
           </div>
           <div className="relative flex-1 min-h-[300px] overflow-auto">
-             {/* Backdrop for highlights */}
-             <div className="absolute inset-0 p-4 font-mono text-sm whitespace-pre-wrap break-all pointer-events-none text-transparent z-0">
-               {renderHighlightedText()}
-             </div>
-             {/* Transparent Textarea for input */}
-             <textarea 
-               value={testString}
-               onChange={e => setTestString(e.target.value)}
-               placeholder="Paste test text here..."
-               className="absolute inset-0 w-full h-full p-4 font-mono text-sm bg-transparent text-zinc-900 dark:text-zinc-300 focus:outline-none resize-none z-10 placeholder:text-zinc-400 dark:placeholder-text-zinc-600"
-               spellCheck={false}
-             />
+            {/* Backdrop for highlights */}
+            <div className="absolute inset-0 p-4 font-mono text-sm whitespace-pre-wrap break-all pointer-events-none text-transparent z-0">
+              {renderHighlightedText()}
+            </div>
+            {/* Transparent Textarea for input */}
+            <textarea
+              value={testString}
+              onChange={e => setTestString(e.target.value)}
+              placeholder="Paste test text here..."
+              className="absolute inset-0 w-full h-full p-4 font-mono text-sm bg-transparent text-zinc-900 dark:text-zinc-300 focus:outline-none resize-none z-10 placeholder:text-zinc-400 dark:placeholder-text-zinc-600"
+              spellCheck={false}
+            />
           </div>
         </div>
       </div>

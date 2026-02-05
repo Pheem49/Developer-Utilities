@@ -88,7 +88,7 @@ console.log(greeting);
   return (
     <ToolWrapper
       title="Markdown Preview"
-      description="Real-time Markdown editor with formatting toolbar."
+      description="Write and preview Markdown content with split-pane editing and export options."
       actions={
         <div className="flex gap-2">
           <div className="hidden md:flex bg-zinc-100 dark:bg-zinc-800 rounded-lg p-1 mr-2">

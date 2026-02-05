@@ -34,7 +34,7 @@ export const JsonFormatter: React.FC = () => {
     setIsTyping(true);
     const timer = setTimeout(() => {
       setIsTyping(false);
-      
+
       if (!input.trim()) {
         setOutput('');
         setError(null);
@@ -42,7 +42,7 @@ export const JsonFormatter: React.FC = () => {
       }
 
       if (input.length > MAX_INPUT_SIZE) {
-        setError(`Input exceeds maximum size of 1MB (${(input.length/1000000).toFixed(2)}MB).`);
+        setError(`Input exceeds maximum size of 1MB (${(input.length / 1000000).toFixed(2)}MB).`);
         return;
       }
 
@@ -64,9 +64,9 @@ export const JsonFormatter: React.FC = () => {
   const loadSample = () => setInput(SAMPLE_JSON);
 
   return (
-    <ToolWrapper 
-      title="JSON Formatter" 
-      description="Format, validate, and minify JSON data."
+    <ToolWrapper
+      title="JSON Formatter"
+      description="Format, validate, minify, and explore JSON data with error highlighting."
       actions={
         <>
           <Button variant="ghost" size="sm" onClick={loadSample} title="Load Sample">
@@ -99,8 +99,8 @@ export const JsonFormatter: React.FC = () => {
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center mb-2">
             <div className="flex items-center gap-2">
-               <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Output</label>
-               {isTyping && <span className="text-[10px] text-primary animate-pulse">Processing...</span>}
+              <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Output</label>
+              {isTyping && <span className="text-[10px] text-primary animate-pulse">Processing...</span>}
             </div>
             <div className="flex gap-2">
               <Button variant="secondary" size="sm" onClick={handleMinify} className={`text-xs h-7 ${space === 0 ? 'border-primary text-primary' : ''}`}>Minify</Button>
@@ -108,12 +108,11 @@ export const JsonFormatter: React.FC = () => {
               <CopyButton text={output} />
             </div>
           </div>
-          
-          <div className={`flex-1 w-full rounded-md border p-4 overflow-auto font-mono text-sm relative transition-colors duration-200 ${
-            error 
-              ? 'bg-red-950/10 border-red-900/50' 
+
+          <div className={`flex-1 w-full rounded-md border p-4 overflow-auto font-mono text-sm relative transition-colors duration-200 ${error
+              ? 'bg-red-950/10 border-red-900/50'
               : 'bg-surfaceHighlight border-zinc-700'
-          }`}>
+            }`}>
             {error ? (
               <div className="flex items-start gap-3 text-red-400">
                 <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />

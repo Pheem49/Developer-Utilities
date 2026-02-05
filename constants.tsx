@@ -48,7 +48,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.CHMOD,
     name: 'Chmod Calculator',
-    description: 'Calculate numeric and symbolic linux file permissions.',
+    description: 'Calculate numeric (octal) and symbolic (rwx) file permissions for Linux/Unix systems.',
     icon: Lock,
     component: <ChmodCalculator />,
     category: 'API & DevOps'
@@ -56,7 +56,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.CRON,
     name: 'Cron Generator',
-    description: 'Parse and validate cron schedule expressions.',
+    description: 'Parse, validate, and convert cron schedule expressions into human-readable descriptions.',
     icon: Clock,
     component: <CronGenerator />,
     category: 'API & DevOps'
@@ -64,7 +64,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.SQL,
     name: 'SQL Formatter',
-    description: 'Format and prettify SQL queries for various dialects.',
+    description: 'Format, beautify, and minify SQL queries with support for various dialects.',
     icon: Database,
     component: <SqlFormatter />,
     category: 'API & DevOps'
@@ -72,7 +72,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.DOCKER,
     name: 'Dockerfile Generator',
-    description: 'Generate basic Dockerfiles for common languages.',
+    description: 'Generate optimized Dockerfiles for Node.js, Python, Go, and other common languages.',
     icon: Server,
     component: <DockerfileGenerator />,
     category: 'API & DevOps'
@@ -80,7 +80,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.GRADIENT,
     name: 'Gradient Generator',
-    description: 'Create linear and radial gradients with a visual editor.',
+    description: 'Create and customize beautiful linear and radial CSS gradients visually.',
     icon: Palette,
     component: <GradientGenerator />,
     category: 'UI & Graphics'
@@ -88,7 +88,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.BOX_SHADOW,
     name: 'Box Shadow Generator',
-    description: 'Design complex CSS box shadows visually.',
+    description: 'Design complex, layered CSS box shadows with a real-time visual preview.',
     icon: Layers,
     component: <BoxShadowGenerator />,
     category: 'UI & Graphics'
@@ -96,7 +96,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.COLOR_CONVERTER,
     name: 'Color Converter',
-    description: 'Convert between HEX, RGB, HSL, and CMYK formats.',
+    description: 'Convert colors between HEX, RGB, HSL, and CMYK formats with live preview.',
     icon: Palette,
     component: <ColorConverter />,
     category: 'UI & Graphics'
@@ -104,7 +104,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.SVG_OPTIMIZER,
     name: 'SVG Optimizer',
-    description: 'Minify and clean up SVG code for the web.',
+    description: 'Minify and clean up SVG code to reduce file size for web usage.',
     icon: FileCode,
     component: <SvgOptimizer />,
     category: 'UI & Graphics'
@@ -112,7 +112,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.QR_CODE,
     name: 'QR Code Generator',
-    description: 'Generate customizable QR codes for URLs and text.',
+    description: 'Generate customizable QR codes for URLs, text, Wi-Fi, and more.',
     icon: QrCode,
     component: <QrCodeGenerator />,
     category: 'UI & Graphics'
@@ -120,7 +120,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.JSON,
     name: 'JSON Formatter',
-    description: 'Prettify or minify JSON with error validation.',
+    description: 'Format, validate, minify, and explore JSON data with error highlighting.',
     icon: FileJson,
     component: <JsonFormatter />,
     category: 'Data & Code Formatting'
@@ -128,7 +128,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.JWT,
     name: 'JWT Decoder',
-    description: 'Decode JSON Web Tokens and view claims.',
+    description: 'Decode JSON Web Tokens (JWT) to view header and payload claims.',
     icon: Shield,
     component: <JwtDecoder />,
     category: 'Security & Encoding'
@@ -136,7 +136,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.BASE64,
     name: 'Base64 Converter',
-    description: 'Encode and decode Base64 strings.',
+    description: 'Encode text to Base64 and decode Base64 strings back to UTF-8 text.',
     icon: Binary,
     component: <Base64Converter />,
     category: 'Data & Code Formatting'
@@ -144,7 +144,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.HASH,
     name: 'Hash Generator',
-    description: 'Calculate MD5, SHA-1, SHA-256 checksums.',
+    description: 'Calculate cryptographic, one-way hashes (MD5, SHA-1, SHA-256) for text input.',
     icon: Hash,
     component: <HashGenerator />,
     category: 'Security & Encoding'
@@ -152,7 +152,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.PASSWORD,
     name: 'Password Generator',
-    description: 'Create secure, random passwords locally.',
+    description: 'Generate strong, secure, and random passwords with custom parameters.',
     icon: KeyRound,
     component: <PasswordGenerator />,
     category: 'Security & Encoding'
@@ -160,7 +160,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.UUID,
     name: 'UUID Generator',
-    description: 'Generate standard UUID v4 identifiers.',
+    description: 'Generate cryptographically secure Version 4 Universally Unique Identifiers (UUIDs).',
     icon: Fingerprint,
     component: <UuidGenerator />,
     category: 'Data & Code Formatting'
@@ -168,7 +168,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.CSS_UNIT,
     name: 'CSS Unit Converter',
-    description: 'Convert between Pixels and REM units.',
+    description: 'Convert CSS units between Pixels (px) and REM/EM based on base font size.',
     icon: Scaling,
     component: <CssUnitConverter />,
     category: 'Frontend Development'
@@ -176,7 +176,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.TIMESTAMP,
     name: 'Timestamp Converter',
-    description: 'Convert between Unix timestamps and Dates.',
+    description: 'Convert between Unix timestamps (seconds/millis) and human-readable dates.',
     icon: Clock,
     component: <TimestampConverter />,
     category: 'Data & Code Formatting'
@@ -184,7 +184,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.REGEX,
     name: 'Regex Tester',
-    description: 'Test regular expressions in real-time.',
+    description: 'Test and validate regular expressions against text strings in real-time.',
     icon: Regex,
     component: <RegexTester />,
     category: 'Data & Code Formatting'
@@ -192,7 +192,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.MARKDOWN,
     name: 'Markdown Preview',
-    description: 'Live preview editor for Markdown syntax.',
+    description: 'Write and preview Markdown content with split-pane editing and export options.',
     icon: FileText,
     component: <MarkdownPreview />,
     category: 'Frontend Development'
@@ -200,7 +200,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.URL_ENCODE,
     name: 'URL Encoder',
-    description: 'Encode or decode URL parameters.',
+    description: 'Encode text to URL-safe format and decode URL-encoded strings.',
     icon: Link,
     component: <UrlEncoder />,
     category: 'Data & Code Formatting'
@@ -208,7 +208,7 @@ export const TOOLS: ToolDef[] = [
   {
     id: ToolId.LOREM,
     name: 'Lorem Ipsum',
-    description: 'Generate placeholder text for UI/UX design.',
+    description: 'Generate placeholder text (Lorem Ipsum) for prototyping and layout design.',
     icon: Type,
     component: <LoremIpsum />,
     category: 'UI & Graphics'

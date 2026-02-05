@@ -18,12 +18,12 @@ export const UrlEncoder: React.FC = () => {
   };
 
   return (
-    <ToolWrapper 
-      title="URL Encode/Decode" 
-      description="Encode or decode URL components."
+    <ToolWrapper
+      title="URL Encode/Decode"
+      description="Encode text to URL-safe format and decode URL-encoded strings."
       actions={
         <Button variant="ghost" size="sm" onClick={() => { setInput(''); setOutput(''); }} title="Clear">
-           <Trash2 className="w-4 h-4" />
+          <Trash2 className="w-4 h-4" />
         </Button>
       }
     >

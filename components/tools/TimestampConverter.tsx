@@ -61,24 +61,24 @@ export const TimestampConverter: React.FC = () => {
   ] : [];
 
   return (
-    <ToolWrapper 
-      title="Timestamp Converter" 
-      description="Convert Unix timestamps to human-readable dates and vice versa."
+    <ToolWrapper
+      title="Timestamp Converter"
+      description="Convert between Unix timestamps (seconds/millis) and human-readable dates."
       actions={
-         <Button variant="ghost" size="sm" onClick={handleReset} title="Reset">
-           <RefreshCw className="w-4 h-4" />
-         </Button>
+        <Button variant="ghost" size="sm" onClick={handleReset} title="Reset">
+          <RefreshCw className="w-4 h-4" />
+        </Button>
       }
     >
       <div className="max-w-3xl mx-auto space-y-8">
-        
+
         {/* Current Time Hero */}
         <div className="bg-gradient-to-r from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 text-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
           <h3 className="text-zinc-500 dark:text-zinc-400 text-sm font-medium uppercase tracking-widest mb-2">Current Unix Timestamp</h3>
           <div className="text-5xl md:text-6xl font-mono text-primary font-bold tracking-tighter tabular-nums flex justify-center items-center gap-4">
-             {now}
-             <CopyButton text={now.toString()} />
+            {now}
+            <CopyButton text={now.toString()} />
           </div>
         </div>
 
@@ -95,9 +95,9 @@ export const TimestampConverter: React.FC = () => {
             />
           </div>
           <div className="flex gap-2 text-xs text-zinc-500">
-             <button onClick={() => handleConvert(now.toString())} className="hover:text-primary underline">Use Current</button>
-             <span>|</span>
-             <button onClick={() => handleConvert("1970-01-01")} className="hover:text-primary underline">Epoch</button>
+            <button onClick={() => handleConvert(now.toString())} className="hover:text-primary underline">Use Current</button>
+            <span>|</span>
+            <button onClick={() => handleConvert("1970-01-01")} className="hover:text-primary underline">Epoch</button>
           </div>
         </div>
 

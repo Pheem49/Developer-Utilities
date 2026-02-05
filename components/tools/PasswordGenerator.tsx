@@ -32,20 +32,20 @@ export const PasswordGenerator: React.FC = () => {
     if (includeSymbols) mustInclude.push('!@#$%^&*()_+~`|}{[]:;?><,./-=');
 
     if (mustInclude.length > 0) {
-        for(let i=0; i<mustInclude.length; i++) {
-             const set = mustInclude[i];
-             retVal += set.charAt(Math.floor(Math.random() * set.length));
-        }
+      for (let i = 0; i < mustInclude.length; i++) {
+        const set = mustInclude[i];
+        retVal += set.charAt(Math.floor(Math.random() * set.length));
+      }
     }
 
     // Fill the rest
     for (let i = 0, n = charset.length; i < length - mustInclude.length; ++i) {
       retVal += charset.charAt(Math.floor(Math.random() * n));
     }
-    
+
     // Shuffle
     retVal = retVal.split('').sort(() => 0.5 - Math.random()).join('');
-    
+
     setPassword(retVal);
   };
 
@@ -74,7 +74,7 @@ export const PasswordGenerator: React.FC = () => {
   }, [length, includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
 
   const Checkbox = ({ label, checked, onChange }: { label: string, checked: boolean, onChange: (v: boolean) => void }) => (
-    <div 
+    <div
       onClick={() => onChange(!checked)}
       className="flex items-center gap-3 p-3 rounded-lg border border-zinc-700 bg-zinc-800/30 cursor-pointer hover:bg-zinc-800/80 transition-colors select-none"
     >
@@ -84,78 +84,78 @@ export const PasswordGenerator: React.FC = () => {
   );
 
   return (
-    <ToolWrapper 
-      title="Password Generator" 
-      description="Generate strong, random passwords or test your own strength."
+    <ToolWrapper
+      title="Password Generator"
+      description="Generate strong, secure, and random passwords with custom parameters."
       actions={
         <Button variant="ghost" size="sm" onClick={generatePassword} title="Regenerate">
-           <RefreshCw className="w-4 h-4" />
+          <RefreshCw className="w-4 h-4" />
         </Button>
       }
     >
       <div className="max-w-2xl mx-auto space-y-8 mt-4">
-        
+
         {/* Output/Input Display */}
         <div className="relative group">
           <div className="bg-surfaceHighlight border border-zinc-700 rounded-xl p-6 text-center shadow-inner focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/30 transition-all">
-             <div className="min-h-[3rem] flex items-center justify-center">
-               <input 
-                  type="text" 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Type or generate..."
-                  className="w-full bg-transparent text-center text-2xl md:text-3xl font-mono text-zinc-900 dark:text-white tracking-wide focus:outline-none placeholder-zinc-400 dark:placeholder-zinc-600"
-                  spellCheck={false}
-               />
-             </div>
+            <div className="min-h-[3rem] flex items-center justify-center">
+              <input
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Type or generate..."
+                className="w-full bg-transparent text-center text-2xl md:text-3xl font-mono text-zinc-900 dark:text-white tracking-wide focus:outline-none placeholder-zinc-400 dark:placeholder-zinc-600"
+                spellCheck={false}
+              />
+            </div>
           </div>
           <div className="absolute top-1/2 -translate-y-1/2 right-4 hidden sm:block">
             <CopyButton text={password} />
           </div>
-          
+
           {/* Strength Meter */}
           <div className="flex gap-1 mt-2 px-1">
-             {[1,2,3,4,5].map(s => (
-               <div key={s} className={`h-1.5 flex-1 rounded-full transition-colors duration-500 ${strength >= s ? (strength < 3 ? 'bg-red-500' : strength < 5 ? 'bg-yellow-500' : 'bg-emerald-500') : 'bg-zinc-300 dark:bg-zinc-800'}`} />
-             ))}
+            {[1, 2, 3, 4, 5].map(s => (
+              <div key={s} className={`h-1.5 flex-1 rounded-full transition-colors duration-500 ${strength >= s ? (strength < 3 ? 'bg-red-500' : strength < 5 ? 'bg-yellow-500' : 'bg-emerald-500') : 'bg-zinc-300 dark:bg-zinc-800'}`} />
+            ))}
           </div>
           <div className="flex justify-between items-center mt-1 px-1">
-             <div className="text-xs text-zinc-500 flex items-center gap-1">
-                <Keyboard className="w-3 h-3" />
-                <span>Editable</span>
-             </div>
-             <div className="text-xs text-zinc-500 uppercase font-bold tracking-wider">
-               {strength === 0 ? 'Enter Password' : strength < 3 ? 'Weak' : strength < 5 ? 'Good' : 'Strong'}
-             </div>
+            <div className="text-xs text-zinc-500 flex items-center gap-1">
+              <Keyboard className="w-3 h-3" />
+              <span>Editable</span>
+            </div>
+            <div className="text-xs text-zinc-500 uppercase font-bold tracking-wider">
+              {strength === 0 ? 'Enter Password' : strength < 3 ? 'Weak' : strength < 5 ? 'Good' : 'Strong'}
+            </div>
           </div>
         </div>
 
         {/* Controls */}
         <div className="space-y-6 bg-surfaceHighlight/50 border border-zinc-700/50 p-6 rounded-xl relative">
-           {/* Visual cue that controls affect generation */}
-           <div className="absolute -top-3 left-4 bg-surfaceHighlight px-2 text-xs font-semibold text-primary">Generator Settings</div>
-           
-           <div className="space-y-3">
-              <div className="flex justify-between items-center text-sm font-medium text-zinc-400">
-                <span>Password Length</span>
-                <span className="text-primary">{length}</span>
-              </div>
-              <input 
-                type="range" 
-                min="6" 
-                max="64" 
-                value={length} 
-                onChange={(e) => setLength(parseInt(e.target.value))}
-                className="w-full accent-primary h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer"
-              />
-           </div>
+          {/* Visual cue that controls affect generation */}
+          <div className="absolute -top-3 left-4 bg-surfaceHighlight px-2 text-xs font-semibold text-primary">Generator Settings</div>
 
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Checkbox label="Uppercase (A-Z)" checked={includeUppercase} onChange={setIncludeUppercase} />
-              <Checkbox label="Lowercase (a-z)" checked={includeLowercase} onChange={setIncludeLowercase} />
-              <Checkbox label="Numbers (0-9)" checked={includeNumbers} onChange={setIncludeNumbers} />
-              <Checkbox label="Symbols (!@#$)" checked={includeSymbols} onChange={setIncludeSymbols} />
-           </div>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center text-sm font-medium text-zinc-400">
+              <span>Password Length</span>
+              <span className="text-primary">{length}</span>
+            </div>
+            <input
+              type="range"
+              min="6"
+              max="64"
+              value={length}
+              onChange={(e) => setLength(parseInt(e.target.value))}
+              className="w-full accent-primary h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Checkbox label="Uppercase (A-Z)" checked={includeUppercase} onChange={setIncludeUppercase} />
+            <Checkbox label="Lowercase (a-z)" checked={includeLowercase} onChange={setIncludeLowercase} />
+            <Checkbox label="Numbers (0-9)" checked={includeNumbers} onChange={setIncludeNumbers} />
+            <Checkbox label="Symbols (!@#$)" checked={includeSymbols} onChange={setIncludeSymbols} />
+          </div>
         </div>
 
         <div className="flex items-center justify-center gap-2 text-xs text-zinc-500">

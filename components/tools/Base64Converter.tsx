@@ -41,11 +41,11 @@ export const Base64Converter: React.FC = () => {
   };
 
   return (
-    <ToolWrapper 
-      title="Base64 Converter" 
-      description="Encode and decode text to and from Base64 format."
+    <ToolWrapper
+      title="Base64 Converter"
+      description="Encode text to Base64 and decode Base64 strings back to UTF-8 text."
       actions={
-         <Button variant="ghost" size="sm" onClick={clearAll} title="Clear">
+        <Button variant="ghost" size="sm" onClick={clearAll} title="Clear">
           <Trash2 className="w-4 h-4" />
         </Button>
       }
@@ -75,9 +75,8 @@ export const Base64Converter: React.FC = () => {
               value={base64}
               onChange={(e) => handleBase64Change(e.target.value)}
               placeholder="Type Base64 here..."
-              className={`flex-1 w-full bg-surfaceHighlight border rounded-md p-4 font-mono text-sm text-zinc-300 focus:outline-none focus:border-primary resize-none placeholder:text-zinc-600 ${
-                error ? 'border-red-900/50' : 'border-zinc-700'
-              }`}
+              className={`flex-1 w-full bg-surfaceHighlight border rounded-md p-4 font-mono text-sm text-zinc-300 focus:outline-none focus:border-primary resize-none placeholder:text-zinc-600 ${error ? 'border-red-900/50' : 'border-zinc-700'
+                }`}
               spellCheck={false}
             />
             {error && <p className="text-red-400 text-xs mt-2">{error}</p>}
